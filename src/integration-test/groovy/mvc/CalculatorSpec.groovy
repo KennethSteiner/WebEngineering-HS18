@@ -23,12 +23,21 @@ class CalculatorSpec extends GebSpec {
 
         then: "Result Page is displayed"
         title == "Average"
-        $("output").text() == "placeholder goes here"
+        $("output").text() == "5.5"
 
 
         when: "click on back link"
         $("a", text: "calculator").click()
         then:
         title == "Grade Calculator"
+
+        when: "set invalid input"
+        $("form").en = "HAllO"
+        $("form").exam ="DU"
+
+        then:
+        $("form").en.isNumber() == false
+        $("form").exam.isNumber() == false
+
     }
 }
